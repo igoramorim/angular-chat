@@ -27,16 +27,27 @@ export class AuthService {
   }
 
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.user.uid : '';
+    // console.log(this.user);
+    const x = this.authState !== null ? this.authState.user.uid : '';
+    console.log('x: ' + x);
+    return x;
   }
 
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((resolve) => {
+        // console.log(resolve.user);
+        this.authState = resolve;
         const status = 'online';
         this.setUserStatus(status);
         this.router.navigate(['chat']);
       });
+  }
+
+  logout() {
+    this.setUserStatus('offline');
+    // this.afAuth.auth.signOut();
+    // this.router.navigate(['login']);
   }
 
   signUp(email: string, password: string, displayName: string) {
@@ -65,10 +76,17 @@ export class AuthService {
   }
 
   setUserStatus(status: string) {
+    console.log('setUserStatus');
     const path = `users/${this.currentUserId}`;
     const data = {
       status: status
     };
+
+    console.log('path: ' + path);
+    console.log('data: ' + data);
+
+    this.db.object(path).update(data)
+      .catch(error => console.log(error));
   }
 
 }
