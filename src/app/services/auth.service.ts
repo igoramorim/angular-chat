@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.uid : '';
+    return this.authState !== null ? this.authState.user.uid : '';
   }
 
   login(email: string, password: string) {
@@ -52,6 +52,9 @@ export class AuthService {
       displayName: displayName,
       status: status
     };
+
+    console.log('path: ' + path);
+    console.log('data: ' + data);
 
     this.db.object(path).update(data)
       .catch(error => console.log(error));
