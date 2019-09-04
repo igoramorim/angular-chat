@@ -50,6 +50,11 @@ export class ChatService {
      return this.db.object(path);
   }
 
+  getUsers(): any {
+    const path = `/users/`;
+    return this.db.list(path);
+  }
+
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
