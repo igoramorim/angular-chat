@@ -29,7 +29,7 @@ export class AuthService {
   get currentUserId(): string {
     // console.log(this.user);
     const x = this.authState !== null ? this.authState.user.uid : '';
-    console.log('x: ' + x);
+    console.log('currentUserId(): ' + x);
     return x;
   }
 

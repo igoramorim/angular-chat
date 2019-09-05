@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from './../services/chat.service';
 import { AuthService } from '../services/auth.service';
@@ -10,12 +11,23 @@ import { AuthService } from '../services/auth.service';
 export class ChatFormComponent implements OnInit {
 
   message: string;
-  userStatus = 'online';
+  user: User;
+  userStatus = '';
 
   constructor(
     private chat: ChatService,
     private authService: AuthService
-  ) { }
+  ) {
+    this.chat.getUser().valueChanges().subscribe(user => {
+      const u: any = user;
+      // this.users = u.filter((us) => {
+      //   return us.status !== 'offline';
+      // });
+      this.user = u;
+      this.userStatus = this.user.status;
+      console.log(this.user);
+    });
+  }
 
   ngOnInit() {
   }
@@ -26,17 +38,14 @@ export class ChatFormComponent implements OnInit {
   }
 
   handleSubmit(event) {
-
-    // TODO: recuperar o status do usuario logado
+    console.log(this.userStatus);
 
     if (this.message !== '' && this.userStatus !== 'typing') {
       // console.log('entrou if typing');
-      this.userStatus = 'typing';
       this.authService.setUserStatus('typing');
     }
     if (this.message === '' && this.userStatus === 'typing') {
       // console.log('entrou if sem typing');
-      this.userStatus = 'online';
       this.authService.setUserStatus('online');
     }
     // console.log(this.userStatus);
