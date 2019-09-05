@@ -1,0 +1,7 @@
+{
+  "short_name": "Chat Push",
+  "name": "Chat Push Notification Test",
+  "start_url": "/login",
+
+  "gcm_sender_id": "103953800507"
+}
