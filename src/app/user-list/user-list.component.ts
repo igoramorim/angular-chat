@@ -13,9 +13,10 @@ export class UserListComponent {
   constructor(private chat: ChatService) {
     this.chat.getUsers().valueChanges().subscribe(users => {
       const u: any[] = users;
-      this.users = u.filter((us) => {
-        return us.status === 'online';
-      });
+      // this.users = u.filter((us) => {
+      //   return us.status !== 'offline';
+      // });
+      this.users = u;
       console.log(this.users);
     });
   }
