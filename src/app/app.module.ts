@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import { AppComponent } from './app.component';
 import { ChatFormComponent } from './chat-form/chat-form.component';
@@ -26,6 +27,8 @@ import { ChatService } from './services/chat.service';
 import { appRoutes } from './../routes';
 import { environment } from 'src/environments/environment';
 import { AsyncPipe } from '@angular/common';
+import { DropZoneDirective } from './drop-zone.directive';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -39,7 +42,9 @@ import { AsyncPipe } from '@angular/common';
     SignupFormComponent,
     NavbarComponent,
     UserListComponent,
-    UserItemComponent
+    UserItemComponent,
+    DropZoneDirective,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { AsyncPipe } from '@angular/common';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    AngularFireStorageModule,
   ],
   providers: [
     AuthService,

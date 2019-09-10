@@ -1,0 +1,51 @@
+<div class="dropzone"
+     dropZone
+     (hovered)="toggleHover($event)"
+     (dropped)="startUpload($event)"
+     [class.hovering]="isHovering">
+
+
+
+     <h3>AngularFire Drop Zone</h3>
+
+     <div class="file">
+        <label class="file-label">
+
+
+        <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+
+
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label">
+              or choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
+</div>
+
+<div *ngIf="percentage | async as pct">
+  <progress class="prog" [value]="pct" max="100"></progress>
+</div>
+
+<p>percentage: {{ percentage | json }} </p>
+<p>snapshot: {{ snapshot | json }} </p>
+
+<!-- <div *ngIf="(snapshot | async)"> -->
+<!-- <div> -->
+  <!-- {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }} -->
+  <!-- {{ snapshot.bytesTransferred }} of {{ snapshot.totalBytes }} -->
+<!-- </div> -->
+
+<div *ngIf="downloadURL | async as url">
+  <h3>Results!</h3>
+  <img [src]="url">
+  <a [href]="url">Download me!</a>
+</div>
+<!--
+<button (click)="task.pause()" [disabled]="!isActive(snap)">Pause</button>
+<button (click)="task.cancel()" [disabled]="!isActive(snap)">Cancel</button>
+<button (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">Resume</button> -->
