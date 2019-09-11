@@ -29,6 +29,7 @@ import { environment } from 'src/environments/environment';
 import { AsyncPipe } from '@angular/common';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { IopageComponent } from './iopage/iopage.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     UserItemComponent,
     DropZoneDirective,
     FileUploadComponent,
+    IopageComponent,
   ],
   imports: [
     BrowserModule,
