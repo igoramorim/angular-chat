@@ -15,7 +15,7 @@ export class ChatioService {
 
   newUserJoined() {
     const observable = new Observable<{ user: string, message: string }>(observer => {
-      this.socket.on('new user joined', (data) => {
+      this.socket.on('new-user-joined', (data) => {
         observer.next(data);
       });
       return () => {
@@ -31,7 +31,7 @@ export class ChatioService {
 
   userLeftRoom() {
     const observable = new Observable<{ user: string, message: string }>(observer => {
-      this.socket.on('left room', (data) => {
+      this.socket.on('left-room', (data) => {
         observer.next(data);
       });
       return () => {
@@ -47,7 +47,7 @@ export class ChatioService {
 
   newMessageReceived() {
     const observable = new Observable<{ user: string, message: string }>(observer => {
-      this.socket.on('new message', (data) => {
+      this.socket.on('new-message', (data) => {
         observer.next(data);
       });
       return () => {
