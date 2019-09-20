@@ -19,4 +19,9 @@ export class LoginFormComponent {
     this.authService.login(this.email, this.password)
     .catch(error => this.errorMsg = error.message);
   }
+
+  navigate() {
+    this.router.navigate(['io']);
+  }
+
 }

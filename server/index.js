@@ -27,6 +27,7 @@ function onConnect(socket) {
   });
 
   socket.on('message', function(data) {
+    console.log('from: ' + data.user + '\tto room: ' + data.room + ' : ' + data.message);
     io.in(data.room).emit('new-message', { user: data.user, message: data.message });
   });
 }

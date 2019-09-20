@@ -1,5 +1,6 @@
 import { ChatioService } from './../services/chatio.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iopage',
@@ -13,7 +14,11 @@ export class IopageComponent {
   messageText: string;
   messageArray: Array<{ user: string, message: string }> = [];
 
-  constructor(private ioService: ChatioService) {
+  constructor(
+    private ioService: ChatioService,
+    private router: Router
+  ) {
+
     this.ioService.newUserJoined()
       .subscribe((data) => {
         this.messageArray.push(data);
@@ -40,6 +45,10 @@ export class IopageComponent {
 
   sendMessage() {
     this.ioService.sendMessage({ user: this.user, room: this.room, message: this.messageText });
+  }
+
+  navigate() {
+    this.router.navigate(['login']);
   }
 
 }
