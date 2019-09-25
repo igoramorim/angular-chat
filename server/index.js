@@ -9,6 +9,12 @@ let io = socketIO(server);
 
 const port = process.env.PORT || 3000;
 
+let msgRoutes = require('./routes/msgRoutes');
+let userRoutes = require('./routes/userRoutes');
+
+msgRoutes(app);
+userRoutes(app);
+
 io.on('connection', onConnect);
 
 function onConnect(socket) {
@@ -31,6 +37,10 @@ function onConnect(socket) {
     io.in(data.room).emit('new-message', { user: data.user, message: data.message });
   });
 }
+
+app.get('/', function(req, res) {
+  res.json({ hello: 'world' });
+});
 
 server.listen(port, () => {
   console.log(`listening: ${port}`);
